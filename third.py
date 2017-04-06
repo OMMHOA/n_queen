@@ -9,8 +9,6 @@ def print_result(node):
         print('%d,' % node.position, end='')    
 
 class Node:
-    
-    done = False
 
     def __init__(self, position, parent):
         self.good_child_index = 0
@@ -25,13 +23,12 @@ class Node:
             self.taboo = []
 
         if self.level >= N:
-            Node.done = True
             print_result(self)
             print('')
 
         self.children = []
         for i in range(0, N):
-            if self.taboo_not_contains(i) and abs(i - self.position) > 1 and not Node.done:
+            if self.taboo_not_contains(i) and abs(i - self.position) > 1:
                 self.children.append(Node(i, self))
 
     def process_taboos(self, taboos):
